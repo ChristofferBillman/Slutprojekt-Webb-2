@@ -1,0 +1,25 @@
+{
+  "name": "slutprojekt",
+  "version": "1.0.0",
+  "description": "En chattapp.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristofferBillman/Slutprojekt-Webb-2.git"
+  },
+  "author": "Christoffer Billman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChristofferBillman/Slutprojekt-Webb-2/issues"
+  },
+  "homepage": "https://github.com/ChristofferBillman/Slutprojekt-Webb-2#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "pug": "^2.0.3",
+    "socket.io": "^2.2.0"
+  }
+}
