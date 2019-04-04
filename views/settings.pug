@@ -1,0 +1,39 @@
+extends layout
+
+mixin switch(id)
+    div
+        .float-right
+            label.switch
+                input(type="checkbox" id=id)
+                span.slider
+        if block
+            block
+        else
+            p null
+
+block nav
+    include nav.pug
+block content
+    .center-contents
+        h1 Inställningar
+        .card
+            p.section ALLMÄNT
+            +switch('darkmodeSwitch')
+                p Mörkt läge
+        .card
+            p.section KONTO
+            +switch('hideprofileSwitch')
+                p Göm profil
+            .line
+            p Byte av användarnamn
+            input(placeholder="Nytt användarnamn")
+            button.primary.nomargin Verkställ
+            .line
+            p Byte av lösenord
+            input(placeholder="Nytt lösenord")
+            input(placeholder="Bekräfta lösenord")
+            button.primary.nomargin Verkställ
+        .card
+            p.section CHATT
+            +switch('msgstatusSwitch')
+                p Visa läskvittenser
