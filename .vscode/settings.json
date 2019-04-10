@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "connectionTimeout": 15,
+            "database": "chattapp",
+            "dialect": "MySQL",
+            "name": "chattapp",
+            "password": "sten1234",
+            "port": 3306,
+            "server": "127.0.0.1",
+            "username": "christoffer"
+        }
+    ]
+}

@@ -20,20 +20,29 @@ block content
             p.section ALLMÄNT
             +switch('darkmodeSwitch')
                 p Mörkt läge
+                p.sm Tillämpar ett mörkt tema på hemsidan. Enkelt mot ögonen.
+            .line
+            +switch()
+                p Smart tematillämpning
+                p.sm Justerar automatiskt vilket tema som används beroende på tiden på dagen.
         .card
             p.section KONTO
             +switch('hideprofileSwitch')
                 p Göm profil
+                p.sm Din profil blir inte synlig för andra. Andra kan inte skicka vänförfrågningar till dig.
             .line
-            p Byte av användarnamn
+            p Byt användarnamn
             input(placeholder="Nytt användarnamn")
             button.primary.nomargin Verkställ
             .line
-            p Byte av lösenord
+            p Byt lösenord
             input(placeholder="Nytt lösenord")
             input(placeholder="Bekräfta lösenord")
             button.primary.nomargin Verkställ
         .card
             p.section CHATT
             +switch('msgstatusSwitch')
-                p Visa läskvittenser
+                p Meddelandekvittenser
+                p.sm Personer som skickar meddelanden till dig kan se om du t.ex läst meddelandet. Om detta är av kan inte du heller se andras kvittenser.
+    script(src="javascripts/settings.js")
+    script(src="javascripts/darkmode.js")

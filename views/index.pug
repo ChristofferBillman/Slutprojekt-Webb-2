@@ -9,9 +9,11 @@ block content
             button.primary Logga in
         h1 Skapa konto
         .card
-            input(type="text" placeholder="Användarnamn")
-            input(type="password" placeholder="Lösenord")
+            input#newUsername(type="text" placeholder="Användarnamn")
+            input#newPassword(type="password" placeholder="Lösenord")
             button.primary Skapa konto
             p.sm Genom att klicka på "Skapa konto" accepterar du användarvillkoren.
+    script(src="/javascripts/darkmode.js")
+    script(src="/javascripts/index.js")
 
 

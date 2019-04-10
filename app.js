@@ -6,6 +6,7 @@ var port = 3000
 var path = require('path')
 var io = require('socket.io')(4000)
 var mysql = require('mysql')
+var sqlstring = require("sqlstring")
 
 require('./routes')(app, port)
 var functions = require('./functions.js')
@@ -24,13 +25,30 @@ var connection = mysql.createConnection({
 })
 
 // Connect to db
-connection.connect(function(err) {
-    if (err) throw err
-    console.log('Database connected.')
+connection.connect((err)=> {
+  if (err) /*throw err*/ console.log('Database connect failed.')
+  console.log('Database connected.')
+})
+
+/*functions.checkToken(connection, "username_jdfjflksjdf5", (results)=> {
+  console.log(results)
+})*/
+
+functions.checkToken(connection, "username_jdfjflksjdf5", (results)=> {
+})
+
+io.on('connection', socket => {
+  socket.on('disconnect', ()=> {
+    console.log('user disconnected.')
+  })
+  // Recive and process new user data
+  socket.on('newUser', newUser => {
+    functions.dbEmptyQuery(connection, sqlstring.format('INSERT INTO users WHERE username = ?, password = ?', [newUser.username,newUser.password]))
+    
+  })
 })
 
 connection.end()
 
-functions.createToken()
-var u1 = new functions.User
+/*functions.createToken()*/
 

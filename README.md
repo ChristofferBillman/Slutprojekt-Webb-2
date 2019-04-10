@@ -62,6 +62,15 @@ Ingress: Ubuntu 700.
 
 Färgschema: #00A3EF (Blå), #4B88A2 (Mörkare blå), #BB0A21 (Röd), #252627 (svart/grå), #FFF9FB (vit)
 ```
+Tid: 180 min + 30 min 
+
+Utanför pass #3:
+Mörkt läge färdigställt.
+Tid: 60 min
+
+Obestämt. börjat: 15:40
+Lärt mig hur callback-funktioner fungerar. Skriver funktioner för CRUD. Lämnat crud nu för att börja med socket.io och login.
+Commmit: 20:23
 
 
 
