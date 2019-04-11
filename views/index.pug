@@ -4,14 +4,14 @@ block content
     .center-contents
         h1 Logga in
         .card
-            input(type="text" placeholder="Användarnamn")
-            input(type="password" placeholder="Lösenord")
-            button.primary Logga in
+            input#username(type="text" placeholder="Användarnamn")
+            input#password(type="password" placeholder="Lösenord")
+            button.primary#loginbtn Logga in
         h1 Skapa konto
         .card
             input#newUsername(type="text" placeholder="Användarnamn")
             input#newPassword(type="password" placeholder="Lösenord")
-            button.primary Skapa konto
+            button.primary#registerbtn Skapa konto
             p.sm Genom att klicka på "Skapa konto" accepterar du användarvillkoren.
     script(src="/javascripts/darkmode.js")
     script(src="/javascripts/index.js")

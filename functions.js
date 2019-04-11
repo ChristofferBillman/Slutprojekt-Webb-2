@@ -2,14 +2,9 @@ var exports = module.exports = {}
 var md5 = require('md5')
 var escape = require("sqlstring").escape
 
-// For encryption of sensitive data.
-exports.encrypt = ()=> {
-
-}
-
 // Function to create token from username and password.
 exports.createToken = (username, password)=> {
-  token = username + '_' + md5(password)
+  token = username + '_' + password
   return token
 }
 
@@ -17,13 +12,18 @@ exports.checkToken = (connection, token, callback)=> {
   var username = token.substr(0, token.lastIndexOf("_"));
   var password = token.substr(token.lastIndexOf("_") + 1);
   connection.query("SELECT * FROM users WHERE username ="  + escape(username), (error, results) => {
-      if(typeof callback === "function") {
-          if (token == results[0].username + '_' + md5(results[0].password)) {
-            return true
+
+    if(typeof callback === "function") {
+      if (results.length > 0) {
+        if (token == results[0].username + '_' + results[0].password) {
+          callback(true)
           } else {
-            return false
-          }
+            callback(false)
         }
+      } else {
+        callback(false) 
+      }
+    }
     })
   }
 

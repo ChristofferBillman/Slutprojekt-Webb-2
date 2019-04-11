@@ -7,6 +7,7 @@ var path = require('path')
 var io = require('socket.io')(4000)
 var mysql = require('mysql')
 var sqlstring = require("sqlstring")
+var md5 = require('md5')
 
 require('./routes')(app, port)
 var functions = require('./functions.js')
@@ -38,17 +39,31 @@ functions.checkToken(connection, "username_jdfjflksjdf5", (results)=> {
 })
 
 io.on('connection', socket => {
+  console.log('user connected.')
+
   socket.on('disconnect', ()=> {
     console.log('user disconnected.')
   })
+
   // Recive and process new user data
   socket.on('newUser', newUser => {
-    functions.dbEmptyQuery(connection, sqlstring.format('INSERT INTO users WHERE username = ?, password = ?', [newUser.username,newUser.password]))
+    console.log(sqlstring.format("INSERT INTO users(username, password) VALUES (?,?)", [newUser.username,newUser.password]))
+    functions.dbEmptyQuery(connection, sqlstring.format("INSERT INTO users(username, password) VALUES(?,?)", [newUser.username,md5(newUser.password)]))
     
+  })
+  // Login
+  socket.on('login', credentials => {
+    token = credentials.username + '_' + md5(credentials.password)
+    console.log(token)
+
+    functions.checkToken(connection, token, success => {
+      if (success) socket.emit('redirect', "/home") 
+      else socket.emit('err', "Felaktigt lösenord eller användarnamn.")
+    })
   })
 })
 
-connection.end()
+//connection.end()
 
 /*functions.createToken()*/
 

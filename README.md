@@ -72,6 +72,10 @@ Obestämt. börjat: 15:40
 Lärt mig hur callback-funktioner fungerar. Skriver funktioner för CRUD. Lämnat crud nu för att börja med socket.io och login.
 Commmit: 20:23
 
+### Pass #4:
+Idag så har jag bara jobbat med backend, framförallt att försöka färdigställa loginsystemet, det fungerar att logga in men jag funderar på att lägga till ett system som kollar klientens token varje gång den requestar en ny sida. Det ska jag jobba på nästa lektion.
+Tid: 180 min.
+
 
 
 
