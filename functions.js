@@ -9,6 +9,7 @@ exports.createToken = (username, password)=> {
 }
 
 exports.checkToken = (connection, token, callback)=> {
+  console.log(token)
   var username = token.substr(0, token.lastIndexOf("_"));
   var password = token.substr(token.lastIndexOf("_") + 1);
   connection.query("SELECT * FROM users WHERE username ="  + escape(username), (error, results) => {

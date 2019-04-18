@@ -1,4 +1,5 @@
-module.exports = function(app, port){
+module.exports = function(app, port, connection){
+    var functions = require('./functions.js')
 
     // Index
     app.get('/', (req, res) => res.render('index'));
@@ -6,7 +7,16 @@ module.exports = function(app, port){
 
     // Home route
     app.get('/home', (req, res) => {
-        res.render('home', {
+        functions.checkToken(connection, req.auth, results => {
+            if (results) {
+                res.render('home', {
+                    userContent: {} // Some object
+                })
+            } else {
+                /*res.render('autherror', {
+
+                })*/
+            }
         })
     })
 

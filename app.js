@@ -9,7 +9,6 @@ var mysql = require('mysql')
 var sqlstring = require("sqlstring")
 var md5 = require('md5')
 
-require('./routes')(app, port)
 var functions = require('./functions.js')
 
 // Setup PUG
@@ -31,6 +30,8 @@ connection.connect((err)=> {
   console.log('Database connected.')
 })
 
+require('./routes')(app, port, connection)
+
 /*functions.checkToken(connection, "username_jdfjflksjdf5", (results)=> {
   console.log(results)
 })*/
@@ -49,17 +50,20 @@ io.on('connection', socket => {
   socket.on('newUser', newUser => {
     console.log(sqlstring.format("INSERT INTO users(username, password) VALUES (?,?)", [newUser.username,newUser.password]))
     functions.dbEmptyQuery(connection, sqlstring.format("INSERT INTO users(username, password) VALUES(?,?)", [newUser.username,md5(newUser.password)]))
-    
   })
   // Login
   socket.on('login', credentials => {
     token = credentials.username + '_' + md5(credentials.password)
-    console.log(token)
+    console.log("token: " + token)
 
     functions.checkToken(connection, token, success => {
       if (success) socket.emit('redirect', "/home") 
       else socket.emit('err', "Felaktigt lösenord eller användarnamn.")
     })
+  })
+
+  socket.on('md5', data => {
+    socket.emit('md5', md5(data))
   })
 })
 

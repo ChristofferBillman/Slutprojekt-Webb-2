@@ -8,6 +8,13 @@ document.getElementById("registerbtn").addEventListener("click", e => {
       username: document.getElementById("newUsername").value,
       password: document.getElementById("newPassword").value
     }
+    socket.emit('md5', newUser.password)
+    socket.on('md5', data => {
+        token.substr(0, token.lastIndexOf("_"))
+        token.substr(token.lastIndexOf("_") + 1)
+        document.cookie = token
+    })
+    document.cookie = JSON.stringify(token)
 
     socket.emit("newUser", newUser)
     window.location.href="/home"
@@ -23,6 +30,7 @@ document.getElementById("registerbtn").addEventListener("click", e => {
     socket.emit('login', credentials)
  })
     socket.on('redirect', link => {
+        window.location.href = link
     })
 
  socket.on('err', error => {
