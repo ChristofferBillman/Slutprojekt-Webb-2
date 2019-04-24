@@ -4,12 +4,12 @@ var escape = require("sqlstring").escape
 
 // Function to create token from username and password.
 exports.createToken = (username, password)=> {
-  token = username + '_' + password
+  token = username + '_' + md5(password)
   return token
 }
 
+// Function to compare and validate token. Checks db credentials to provided token. Returns true to callback if token is valid.
 exports.checkToken = (connection, token, callback)=> {
-  console.log(token)
   var username = token.substr(0, token.lastIndexOf("_"));
   var password = token.substr(token.lastIndexOf("_") + 1);
   connection.query("SELECT * FROM users WHERE username ="  + escape(username), (error, results) => {
@@ -34,6 +34,7 @@ exports.dbEmptyQuery = (connection, query)=> {
 }
 
 // User class, send to db when filled.
+// Currently unused. Remove if not used in future.
 exports.User = class {
   constructor(id, username, password, friends) {
     this.username = username;

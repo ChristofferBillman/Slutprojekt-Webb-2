@@ -76,6 +76,10 @@ Commmit: 20:23
 Idag så har jag bara jobbat med backend, framförallt att försöka färdigställa loginsystemet, det fungerar att logga in men jag funderar på att lägga till ett system som kollar klientens token varje gång den requestar en ny sida. Det ska jag jobba på nästa lektion.
 Tid: 180 min.
 
+### Pass #5:
+Idag har jag jobbat med auth. Jag lägger till en token i en cookie, som skickas till servern varje gång användaren requestar en ny sida. Tokenen kollas då i servern och om den stämmer så skickas genereras sidan för just den användaren och skickas.
+Nästa pass har jag tänkt att börja arbete på själva chattfunktionen samt att göra så att användaren automatiskt loggas in om en giltig token finns. 
+Tid: 180 min.
 
 
 

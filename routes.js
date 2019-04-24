@@ -1,5 +1,7 @@
 module.exports = function(app, port, connection){
     var functions = require('./functions.js')
+    var cookieParser = require('cookie-parser')
+    app.use(cookieParser())
 
     // Index
     app.get('/', (req, res) => res.render('index'));
@@ -7,23 +9,26 @@ module.exports = function(app, port, connection){
 
     // Home route
     app.get('/home', (req, res) => {
-        functions.checkToken(connection, req.auth, results => {
-            if (results) {
+        functions.checkToken(connection, req.cookies.token, success => {
+            if (success) {
                 res.render('home', {
-                    userContent: {} // Some object
+                    userContent: {} // Posts
                 })
             } else {
-                /*res.render('autherror', {
-
-                })*/
+                
             }
         })
     })
 
     // Settings route
     app.get('/settings', (req, res) => {
-        res.render('settings', {
+        functions.checkToken(connection, req.cookies.token, success => {
+            if (success) {
+                res.render('settings', {
+                    userContent: {} // User settings
+                })
+            } else {
+                
+            }
         })
     })
-
-}

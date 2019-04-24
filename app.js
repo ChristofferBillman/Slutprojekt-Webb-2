@@ -1,14 +1,16 @@
-// Dependencies + setup variables
+// Genereal setup
 var express = require('express')
 var app = express()
 var port = 3000
 
+// Dependencies
 var path = require('path')
 var io = require('socket.io')(4000)
 var mysql = require('mysql')
 var sqlstring = require("sqlstring")
 var md5 = require('md5')
 
+// Module with helper functions.
 var functions = require('./functions.js')
 
 // Setup PUG
@@ -32,13 +34,7 @@ connection.connect((err)=> {
 
 require('./routes')(app, port, connection)
 
-/*functions.checkToken(connection, "username_jdfjflksjdf5", (results)=> {
-  console.log(results)
-})*/
-
-functions.checkToken(connection, "username_jdfjflksjdf5", (results)=> {
-})
-
+// Socket.io
 io.on('connection', socket => {
   console.log('user connected.')
 
@@ -49,11 +45,13 @@ io.on('connection', socket => {
   // Recive and process new user data
   socket.on('newUser', newUser => {
     console.log(sqlstring.format("INSERT INTO users(username, password) VALUES (?,?)", [newUser.username,newUser.password]))
+    // Inserts user data into db.
     functions.dbEmptyQuery(connection, sqlstring.format("INSERT INTO users(username, password) VALUES(?,?)", [newUser.username,md5(newUser.password)]))
   })
+
   // Login
   socket.on('login', credentials => {
-    token = credentials.username + '_' + md5(credentials.password)
+    token = functions.createToken(credentials.username, credentials.password)
     console.log("token: " + token)
 
     functions.checkToken(connection, token, success => {
@@ -62,12 +60,13 @@ io.on('connection', socket => {
     })
   })
 
-  socket.on('md5', data => {
-    socket.emit('md5', md5(data))
+  // Create token. Currently only used on signup and login.
+  socket.on('token', credentials => {
+    token = functions.createToken(credentials.username, credentials.password)
+    console.log("generated token:" + token)
+    socket.emit('token', token)
   })
 })
 
 //connection.end()
-
-/*functions.createToken()*/
 
