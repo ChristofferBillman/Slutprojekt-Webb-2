@@ -1,4 +1,5 @@
-module.exports = function(app, port, connection){
+module.exports = function(app, port, connection) {
+
     var functions = require('./functions.js')
     var cookieParser = require('cookie-parser')
     app.use(cookieParser())
@@ -15,7 +16,7 @@ module.exports = function(app, port, connection){
                     userContent: {} // Posts
                 })
             } else {
-                
+                res.render('index')
             }
         })
     })
@@ -28,7 +29,8 @@ module.exports = function(app, port, connection){
                     userContent: {} // User settings
                 })
             } else {
-                
+                res.render('index')
             }
         })
     })
+}

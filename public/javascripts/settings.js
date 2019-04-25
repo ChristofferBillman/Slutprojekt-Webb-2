@@ -1,3 +1,5 @@
+// Dark mode
+
 var cards = document.getElementsByClassName('card')
 var p = document.getElementsByTagName('p')
 var input = document.getElementsByTagName('input')
@@ -41,3 +43,6 @@ function toggle() {
         //for(var i = 0; i < sliders.length; i++) sliders[i].style.backgroundColor = "#252627"
     }
 }
+
+// Settings
+

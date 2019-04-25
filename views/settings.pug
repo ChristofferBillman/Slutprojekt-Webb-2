@@ -32,13 +32,13 @@ block content
                 p.sm Din profil blir inte synlig för andra. Andra kan inte skicka vänförfrågningar till dig.
             .line
             p Byt användarnamn
-            input(placeholder="Nytt användarnamn")
+            input#newUsername(placeholder="Nytt användarnamn")
             button.primary.nomargin Verkställ
             .line
             p Byt lösenord
-            input(placeholder="Nytt lösenord")
-            input(placeholder="Bekräfta lösenord")
-            button.primary.nomargin Verkställ
+            input#newPassword(placeholder="Nytt lösenord")
+            input#confirmNewPassword(placeholder="Bekräfta lösenord")
+            button.primary.nomargin#changePasswordBtn Verkställ
         .card
             p.section CHATT
             +switch('msgstatusSwitch')

@@ -1,10 +1,33 @@
 extends layout
 
+mixin profile-module(src, name, online,id)
+    .standard-padding(id=id)
+        .dsp-flex.profile-container#profile
+            .profile-picture
+                img(src=src height="40")
+            div
+                p= name
+                .dsp-flex
+                    if online
+                        .circle-sm.green
+                    else
+                        .circle-sm.gray
+                    .small-separator
+                    if online
+                        p Online
+                    else
+                        p Offline
 block nav
     include nav.pug
 block content
     .center-contents
         h1 Chattar
         .card
-            p.section SKAPA CHATT
+            p.section SENASTE
+                if
+                    +profile-module("boi","Christoffer Billman", true, "idk")
+        .card
+            p.section SKAPA
+        .card
+            p.section CHATT
     script(src="/javascripts/darkmode.js")
