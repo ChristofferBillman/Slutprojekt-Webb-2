@@ -12,6 +12,7 @@ var md5 = require('md5')
 
 // Module with helper functions.
 var functions = require('./functions.js')
+var secrets = require('./secrets.js')
 
 // Setup PUG
 app.set('views', path.join(__dirname, 'views'))
@@ -19,12 +20,7 @@ app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Setup db
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'christoffer',
-  password : 'sten1234',
-  database : 'chattapp'
-})
+var connection = mysql.createConnection(secrets.dbcredentials)
 
 // Connect to db
 connection.connect((err)=> {
