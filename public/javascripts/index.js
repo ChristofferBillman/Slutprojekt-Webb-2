@@ -10,8 +10,8 @@ document.getElementById("registerbtn").addEventListener("click", e => {
     }
     socket.emit('token', newUser)
     socket.on('token', token => {
+        setCookie('token', token, 30)
     })
-    setCookie('token', token, 30)
 
     socket.emit("newUser", newUser)
     window.location.href="/home"

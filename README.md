@@ -79,14 +79,16 @@ Tid: 180 min.
 ### Pass #5:
 Idag har jag jobbat med auth. Jag lägger till en token i en cookie, som skickas till servern varje gång användaren requestar en ny sida. Tokenen kollas då i servern och om den stämmer så skickas genereras sidan för just den användaren och skickas.
 Nästa pass har jag tänkt att börja arbete på själva chattfunktionen samt att göra så att användaren automatiskt loggas in om en giltig token finns. 
-Tid: 180 min.'
+Tid: 180 min.
 
 ### Pass #6:
 
 Idag har jag jobbat med ...
 Tid: 
 Börjat: 10:24
-Slutat:
+Slutat: 11:20
+
+Annat tillfälle: typ 2h
 
 
 
