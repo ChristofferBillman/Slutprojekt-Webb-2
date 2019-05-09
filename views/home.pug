@@ -1,7 +1,8 @@
 extends layout
 
 mixin profile-module(src, name, online,id)
-    .standard-padding(id=id)
+
+    .standard-padding#ollekaiser()
         .dsp-flex.profile-container#profile
             .profile-picture
                 img(src=src height="40")
@@ -14,9 +15,33 @@ mixin profile-module(src, name, online,id)
                         .circle-sm.gray
                     .small-separator
                     if online
-                        p Online
+                        p Aktiv
                     else
-                        p Offline
+                        p Inaktiv
+mixin chatsent(msg)
+    .dsp-flex
+        .chatsent
+            p= msg
+
+mixin chatrecived(msg)
+    .dsp-flex
+        .chatrecived
+            p= msg
+
+mixin loadchat(messages, chattingwith)
+    +profile-module("./assets/olle.jpg","Olle Kaiser", true, "boi", true)
+    .line
+    +chatrecived("Hej")
+    +chatrecived("HEJ DÅ kdjfkl jklsdjfklsdjofjejef")
+    +chatsent("Bajs")
+    +chatrecived("hello")
+    +chatsent("HEEEJ SJlksdjfklsdfjklsdjf  kjsdfljsd  djf")
+    .line
+    .dsp-flex
+        input#send1input(placeholder="Meddelande...")
+        button.button-send#send1
+    
+
 block nav
     include nav.pug
 block content
@@ -24,12 +49,13 @@ block content
         h1 Chattar
         .card
             p.section SENASTE
-                +profile-module("boi","Christoffer Billman", true, "idk")
-                +profile-module("boi","Olle Kaiser")
+                +profile-module("./assets/pop.jpg","Christoffer Billman", true, "idk")
+                +profile-module("./assets/olle.jpg","Olle Kaiser", "ollekaiser")
         .card
             p.section SKAPA
-        .card
-            p.section CHATT
+                input(placeholder="Sök vänner ...")
+                +profile-module("./assets/olle.jpg", "Olle Kaiser")
+
     script(src="/javascripts/home.js")
     script(src="/javascripts/darkmode.js")
     

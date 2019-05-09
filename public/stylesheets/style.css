@@ -60,10 +60,13 @@ h2 {
   margin: 10px;
 }
 
+#loginglyph {
+  padding: 11px 0 11px 0;
+}
+
 nav {
   height: 70px;
   background-color: white;
-  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.15);
   border-radius: 6px;
 }
 nav a {
@@ -83,14 +86,13 @@ nav a:hover {
 .card {
   min-height: 100px;
   border-radius: 6px;
-  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.15);
   padding: 20px;
   margin: 20px 0 20px 0;
-  background-color: white;
+  background-color: #f7f4f2;
 }
 
 input {
-  border-radius: 6px;
+  border-radius: 20px;
   border-style: solid;
   border-color: lightgrey;
   border-width: 1px;
@@ -107,7 +109,7 @@ button {
   background-color: whitesmoke;
   padding: 10px;
   margin: 15px 15px 0 0;
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15);
   transition-duration: 100ms;
   cursor: pointer;
@@ -126,6 +128,14 @@ button:focus {
   background-color: #00A3EF;
   color: white;
   padding: 10px 40px;
+}
+
+.button-send {
+  width: 28px;
+  height: 28px;
+  margin: 0 0 0 10px;
+  background-color: #00A3EF;
+  border-radius: 14px;
 }
 
 .profile-picture {
@@ -157,6 +167,29 @@ button:focus {
 
 #profile p {
   margin: 0;
+}
+
+.chatsent {
+  display: inline-block;
+  padding: 6px;
+  background-color: #00A3EF;
+  border-radius: 15px;
+  margin: 0 0 5px auto;
+}
+.chatsent p {
+  margin: 0 5px 0 5px;
+  color: white !important;
+}
+
+.chatrecived {
+  display: inline-block;
+  padding: 6px;
+  background-color: lightgray;
+  border-radius: 15px;
+  margin: 0 0 5px 0;
+}
+.chatrecived p {
+  margin: 0 5px 0 5px;
 }
 
 .center-contents {
@@ -224,5 +257,29 @@ input:checked + .slider:before {
   -ms-transform: translateX(17.3333333333px);
   transform: translateX(17.3333333333px);
 }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%;
+}
+
+.clearfix {
+  display: block;
+}
+
+/* close commented backslash hack */
 
 /*# sourceMappingURL=style.css.map */

@@ -2,7 +2,7 @@ var exports = module.exports = {}
 
 /*
     - #1: Change the name of this file to "secrets.js"
-    - #2: Fill out object dbcredentials with your database info.
+    - #2: Fill out info.
     - #3: All done!
 
 */
@@ -12,4 +12,6 @@ exports.dbcredentials = {
     password : 'password',
     database : 'database'
     }
+
+exports.port = "80" // Default http port.
 

@@ -82,7 +82,6 @@ Nästa pass har jag tänkt att börja arbete på själva chattfunktionen samt at
 Tid: 180 min.
 
 ### Pass #6:
-
 Idag har jag jobbat med ...
 Tid: 
 Börjat: 10:24
@@ -90,6 +89,18 @@ Slutat: 11:20
 
 Annat tillfälle: typ 2h
 
+Annat tillfälle: 30 min effektiv tid till att fixa konsol-loggningar.
+Lunchrast: 20 min.
+
+### Pass #7:
+Idag har jag i stort sett bara jobbat med att få till css för själva chattfönstret. Nu är det färdigt, nästa lektion ska jag fortsätta med det samt påbörja skapandet av själva funktionaliteten.
+180 min
+
+### Pass #8:
+Idag har jag börjat med chattfunktionen. Jag tänkte generera alla öppna chatter sen tidigare sessioner via pug, men har bestämt mig för att till en början är det enklare att bara inte spara sessionsdata och sedan bara öppna chatterna genom klienten.
+
+### Pass #9:
+Idag så har jag försökt att göra så att användaren kan öppna och stänga chattar. Jag har aldrig manipulerat dom-trädet genom klienten efter sidan har laddats, så det är lite av en utmaning. Nästa tillfälle ska jag fortsätta med det.
 
 
 

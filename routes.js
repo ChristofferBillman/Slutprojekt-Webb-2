@@ -1,9 +1,14 @@
-module.exports = function(app, port, connection) {
+module.exports = function(app, connection) {
 
+    var secrets = require('./secrets.js')
     var functions = require('./functions.js')
+    var mysql = require('mysql')
     var cookieParser = require('cookie-parser')
     var colors = require('colors')
+    var port = secrets.port
     app.use(cookieParser())
+
+    var connection = secrets.dbcredentials
 
     // Index
     app.get('/', (req, res) => res.render('index'));
@@ -12,12 +17,12 @@ module.exports = function(app, port, connection) {
 
     // Home route
     app.get('/home', (req, res) => {
-        functions.checkToken(connection, req.cookies.token, success => {
+        functions.checkToken(req.cookies.token, success => {
             var username = req.cookies.token.substr(0, req.cookies.token.lastIndexOf("_"))
             if (success) {
-                console.log('[USER ACTIVITY]'.black.bgWhite + ': ' +  "User " + username + " went to home page.")
+                console.log('[USER ACTIVITY]' + ': ' +  "User " + username + " went to home page.")
                 res.render('home', {
-                    userContent: {} // Posts
+                    userContent: functions.genContent(username)
                 })
             } else {
                 res.render('index')
@@ -27,10 +32,10 @@ module.exports = function(app, port, connection) {
 
     // Settings route
     app.get('/settings', (req, res) => {
-        functions.checkToken(connection, req.cookies.token, success => {
+        functions.checkToken(req.cookies.token, success => {
             var username = req.cookies.token.substr(0, req.cookies.token.lastIndexOf("_"))
             if (success) {
-                console.log('[USER ACTIVITY]'.black.bgWhite + ': ' +  "User " + username + " went to settings.")
+                console.log('[USER ACTIVITY]' + ': ' +  "User " + username + " went to settings.")
                 res.render('settings', {
                     userContent: {} // User settings
                 })

@@ -1,7 +1,6 @@
 // Genereal setup
 var express = require('express')
 var app = express()
-var port = 3000
 
 // Dependencies
 var path = require('path')
@@ -29,11 +28,15 @@ connection.connect((err)=> {
   console.log('[STATUS]'.black.bgWhite + ': ' + 'Database connected.'.green)
 })
 
-require('./routes')(app, port, connection)
+require('./routes')(app, connection)
 
+// TODO: Göra om socket.io-saker till req och res.
 // Socket.io
+
+online = []
+
 io.on('connection', socket => {
-  console.log('[USER ACTIVITY]'.black.bgWhite + ': ' + 'Unknown user connected.')
+  console.log('[USER ACTIVITY]' + ': ' + 'user connected.')
 
   socket.on('disconnect', ()=> {
     
@@ -42,20 +45,20 @@ io.on('connection', socket => {
   // Recive and process new user data
   socket.on('newUser', newUser => {
     // Inserts user data into db.
-    functions.dbEmptyQuery(connection, sqlstring.format("INSERT INTO users(username, password) VALUES(?,?)", [newUser.username,md5(newUser.password)]))
+    functions.dbEmptyQuery(sqlstring.format("INSERT INTO users(username, password) VALUES(?,?)", [newUser.username,md5(newUser.password)]))
   })
 
   // Login
   socket.on('login', credentials => {
     token = functions.createToken(credentials.username, credentials.password)
 
-    functions.checkToken(connection, token, success => {
+    functions.checkToken(token, success => {
       if (success) {
         socket.emit('redirect', "/home")
-        console.log('[USER ACTIVITY]'.black.bgWhite + ': ' + credentials.username + " logged in.")
+        console.log('[USER ACTIVITY]' + ': ' + credentials.username + " logged in.")
       } else {
         socket.emit('err', "Felaktigt lösenord eller användarnamn.")
-        console.log('[USER ACTIVITY]'.black.bgWhite + ": " + "User attempted login.")
+        console.log('[USER ACTIVITY]' + ": " + "User attempted login.")
       } 
     })
   })
@@ -65,7 +68,32 @@ io.on('connection', socket => {
     token = functions.createToken(credentials.username, credentials.password)
     socket.emit('token', token)
   })
+
+  socket.on('newMsg', msg => {
+    msg.timesent = Date.now() / 1000
+    msg.status = 1;
+    console.log(sqlstring.format("INSERT INTO messages (message, recipient, status, timesent, userid) VALUES (?,?,?,?,?)", [msg.message, msg.recipient, msg.status, msg.timesent, msg.userid]))
+    connection.query(sqlstring.format("INSERT INTO messages (message, recipient, status, timesent, userid) VALUES (?,?,?,?,?)", [msg.message, msg.recipient, msg.status, msg.timesent, msg.userid]), (error, results) => {
+      if (error) throw error
+      else console.log("Successful")
+
+    })
+  })
+  /*
+  if (update) socket.emit('newMsg', msg)
+  else 
+  */
+
+  socket.on('getChats', data => {
+    connection.query(sqlstring.format("SELECT * FROM messages WHERE ? AND ?", [data.recipient, data.user]), (error, results) => {
+      if (results > 0) var chat = results
+      else chat = "No chats could be found."
+
+      socket.emit('getChats', chat)
+    })
+  })
 })
+
 
 //connection.end()
 

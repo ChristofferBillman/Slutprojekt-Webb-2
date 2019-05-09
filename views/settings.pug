@@ -26,11 +26,15 @@ block content
                 p Smart tematillämpning
                 p.sm Justerar automatiskt vilket tema som används beroende på tiden på dagen.
         .card
-            p.section KONTO
+            p.section PROFIL
+            .line
             +switch('hideprofileSwitch')
                 p Göm profil
                 p.sm Din profil blir inte synlig för andra. Andra kan inte skicka vänförfrågningar till dig.
             .line
+        .card
+            p.section KONTO
+
             p Byt användarnamn
             input#newUsername(placeholder="Nytt användarnamn")
             button.primary.nomargin Verkställ
