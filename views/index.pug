@@ -3,6 +3,7 @@ extends layout
 block content
     .center-contents
         #loadingscreen
+        //canvas#canvas(width="200px" height="200px")
         h1 Logga in
         .card
             input#username(type="text" placeholder="Användarnamn")
@@ -11,10 +12,12 @@ block content
         h1 Skapa konto
         .card
             input#newUsername(type="text" placeholder="Användarnamn")
+            input#newDisplayname(type="text" placeholder="Namn")
             input#newPassword(type="password" placeholder="Lösenord")
             button.primary#registerbtn Skapa konto
             p.sm Genom att klicka på "Skapa konto" accepterar du användarvillkoren.
     script(src="/javascripts/darkmode.js")
     script(src="/javascripts/index.js")
+    script(src="/javascripts/nav.js")
 
 

@@ -20,16 +20,24 @@ module.exports = function(app, connection) {
         functions.checkToken(req.cookies.token, success => {
             var username = req.cookies.token.substr(0, req.cookies.token.lastIndexOf("_"))
             if (success) {
-                console.log('[USER ACTIVITY]' + ': ' +  "User " + username + " went to home page.")
-                res.render('home', {
-                    userContent: functions.genContent(username)
+                console.log('[USER ACTIVITY]' + ': ' +  "User " + username + " went to home page.");
+                functions.genContent(username, results => {
+                    if (results) {
+                        res.render('home', {
+                            users: results 
+                        })
+                    } else {
+                        res.render('home', {
+                            users: ""
+                        })
+                    }
                 })
             } else {
                 res.render('index')
             }
         })
     })
-
+,
     // Settings route
     app.get('/settings', (req, res) => {
         functions.checkToken(req.cookies.token, success => {

@@ -1,12 +1,56 @@
+
 var ip = "localhost:4000"
 var socket = io.connect(ip)
 
-var chatsopen;
+var chatsopen = 0;
 
 socket.on('newMsg', msg => {
     
 })
+socket.on('onsearch', users => {
+    console.log("searching...")
+    if (users.length < 1) {
+        document.getElementById("searchresults").innerHTML += `<p class="gray"> Inga resultat.</p>`
+    } else {
+        for(var i = 0; i < 10; i++) {
+            document.getElementById("searchresults").innerHTML +=
+            `
+            <div class="standard-padding" id="">
+                <div class="dsp-flex profile-container" id="profile">
+                    <div class="profile-picture">
+                        <img src="${users[i].src}" height="40">
+                    </div>
+                <div>
+                <div class="dsp-flex">
+                    <p> ${users[i].username} </p> <div class="spacer"></div> <p class="gray"> ${users[i].displayname} </p>
+                </div>
+                    <div class="dsp-flex">
+                        <p class="clickable-text" id="${users[i].username}friendrequest"> Skicka vänförfrågan </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+        }
+    }  
+})
+searchbar = document.getElementById("searchbar")
 
+searchbar.addEventListener("keydown", e => {
+    if (e) {
+        document.getElementById("searchresults").innerHTML = ""
+        console.log("sending to server ...")
+        searchquery = searchbar.value
+        socket.emit('onsearch', searchquery)
+    }
+})
+document.getElementById("searchbar").addEventListener("blur", e => {
+    document.getElementById("searchresults").style.display = "none"
+})
+document.getElementById("searchbar").addEventListener("focus", e => {
+    document.getElementById("searchresults").style.display = "inline-block"
+})
+/*
 document.getElementById("send1").addEventListener("click", e => {
     token = getCookie("token")
     username = token.substr(0, token.lastIndexOf("_"))
@@ -19,8 +63,11 @@ document.getElementById("send1").addEventListener("click", e => {
     }
     socket.emit('newMsg', msg)
     console.log(msg)
-})
-
+})*/
+/*window.onload = () => {
+    for(var i = 0; i < users.length; i++ )
+    loadlatest(users[i]) 
+}*/
 
 var dspflex = chatrecived = chatsent = document.createElement("div")
 var p = document.createElement("p")
@@ -29,45 +76,56 @@ dspflex.className = "dsp-flex"
 chatrecived.className = "chatrecived"
 chatsent.className = "chatsent"
 
-function openChat(username) {
-    socket.emit('getChats', {recipient: username, user: username})
-    document.getElementsByName("body")[0].innerHTML += `
+function loadlatest(user) {
+    socket.emit('getChats', {recipient: user.recipient, user: user.username})
+    document.getElementsByClassName("card")[1].innerHTML += `
     
     <div class="standard-padding" id="${chatsopen++}">
         <div class="dsp-flex profile-container" id="profile">
             <div class="profile-picture">
-                <img src="${username.src}" height="40">
+                <img src="${user.src}" height="40">
             </div>
         <div>
-            <p> ${username.displayname} </p>
+            <p> ${user.displayname} </p>
             <div class="dsp-flex">
-            ${condition ? "boi" : "okay"}
-                if online
-                    <div>
-                        <div class="circle-sm green"></div>
-                    </div>
-                else
-                    <div>
-                            <div class="circle-sm gray"></div>
-                        <div class="small-separator"></div>
-                    </div>
-                if online
-                    <p> Aktiv </p>
-                else
-                    <p> Inaktiv</p>
+                ${user.online ? `<div><div class="circle-sm green"></div></div>` : `<div><div class="circle-sm gray"></div><div class="small-separator"></div></div>`}
+                ${user.online ? `<p> Aktiv </p>`:`<p> Inaktiv</p>`}
             </div>
         </div>
     </div>
-</div>`
-
+</div>
+`
 }
 
 socket.on('getChats', chats => {
-    document.getElementsByClassName('card')[2].innerHTML += `<p>${chats}</p>`
+    
 })
 
-function closeChat() {
+function closechat(user) {
 
+}
+function openchat(user) {
+
+}
+function createsentchat(id, message) {
+    document.getElementById(id).innerHTML +=
+    `
+    <div class="dsp-flex">
+        <div class="chatsent">
+            <p> ${message} </p>
+        </div>
+    </div>
+    `
+}
+function createrecivedchat(id, message) {
+    document.getElementById(id).innerHTML +=
+    `
+    <div class="dsp-flex">
+        <div class="chatrecived">
+            <p> ${message} </p>
+        </div>
+    </div>
+    `
 }
 
 function getCookie(name) {

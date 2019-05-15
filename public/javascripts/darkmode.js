@@ -1,4 +1,4 @@
-var cards = document.getElementsByClassName('card')
+/*var cards = document.getElementsByClassName('card')
 var p = document.getElementsByTagName('p')
 var input = document.getElementsByTagName('input')
 var sliders = document.getElementsByClassName('slider')
@@ -31,3 +31,4 @@ if (JSON.parse(localStorage.getItem("darkmode")) || smartTheme) {
     for(var i = 0; i < a.length; i++) a[i].style.color = "black"
     //for(var i = 0; i < sliders.length; i++) sliders[i].style.backgroundColor = "#252627"
 }
+*/

@@ -6,54 +6,72 @@ var secrets = require('./secrets.js')
 
 var connection = mysql.createConnection(secrets.dbcredentials)
 
-
 // Function to create token from username and password.
-exports.createToken = (username, password)=> {
+exports.createToken = (username, password) => {
   token = username + '_' + md5(password)
   return token
 }
 
 // Function to compare and validate token. Checks db credentials to provided token. Returns true to callback if token is valid.
-exports.checkToken = (token, callback)=> {
+exports.checkToken = (token, callback) => {
   var username = token.substr(0, token.lastIndexOf("_"));
   var password = token.substr(token.lastIndexOf("_") + 1);
-  connection.query("SELECT * FROM users WHERE username ="  + escape(username), (error, results) => {
+  connection.query("SELECT * FROM users WHERE username =" + escape(username), (error, results) => {
 
-    if(typeof callback === "function") {
+    if (typeof callback === "function") {
       if (results.length > 0) {
         if (token === results[0].username + '_' + results[0].password) {
           callback(true)
-          } else {
-            callback(false)
+        } else {
+          callback(false)
         }
       } else {
-        callback(false) 
+        callback(false)
       }
     }
-    })
-  }
-
-exports.genContent = (username) => {
-  var content = ["latest", "chats", "users online", "friends"]; 
-
-  connection.query("SELECT * FROM users WHERE username =" + escape(username) , (error, results) => {
-    if (results.length > 0) {
-
-     }
   })
-
-  // Get latest chats.
-
-  // Get friends
-
-  // Get users online
-  return content
+}
+// Generates array of friends.
+exports.genContent = (username, callback) => {
+  exports.dbQuery("SELECT friends FROM users WHERE username =" + escape(username) + ";", (results) => {
+    if (results[0].friends != null) {
+      exports.dbQuery("SELECT * FROM users WHERE id in " + results[0].friends + ";", (results) => {
+        callback(results)
+      })
+    } else {
+      callback(false)
+    }
+  })
 }
 
-exports.dbEmptyQuery = (query)=> {
+exports.dbQuery = (query, callback) => {
+  connection.query(query, (error, results) => {
+    if (error) throw error
+    if (results.length > 0) {
+      callback(results)
+    } else {
+      callback([])
+    }
+  })
+}
+
+/*
+"SELECT friends FROM users WHERE username =" + escape(username)
+"SELECT * FROM users WHERE id in (" + escape(results[0].friends) + ");"
+*/
+exports.dbEmptyQuery = (query) => {
   connection.query(query)
   console.log('SQL Query successfully executed')
 }
+/*exports.EmptyQuery = (query, callback)=> {
+  connection.query(query, (error, results) => {
+    callback(results)
+  })
+}
+EmptyQuery("SELECT ...", () => {
+  return results
+})
+*/
 
 
 // User class, send to db when filled.

@@ -1,7 +1,7 @@
 body {
   margin: 0 auto;
   padding: 16px;
-  background-color: white;
+  background-color: #f4f6f7;
 }
 
 h1 {
@@ -33,6 +33,15 @@ h2 {
   font-family: Secular One;
 }
 
+.gray {
+  color: gray;
+}
+
+.clickable-text {
+  color: #00A3EF;
+  cursor: pointer;
+}
+
 .dsp-flex {
   display: flex;
   flex-wrap: wrap;
@@ -48,6 +57,7 @@ h2 {
 
 .spacer {
   height: 16px;
+  width: 10px;
 }
 
 .nomargin {
@@ -58,10 +68,6 @@ h2 {
   background-color: lightgrey;
   height: 1px;
   margin: 10px;
-}
-
-#loginglyph {
-  padding: 11px 0 11px 0;
 }
 
 nav {
@@ -83,12 +89,24 @@ nav a:hover {
   color: #252627;
 }
 
+.navcontainer {
+  height: 70px;
+  display: inline-block;
+  margin: 0 0 0 30px;
+}
+
+#canvas {
+  float: left;
+  width: 70px;
+  height: 70px;
+}
+
 .card {
   min-height: 100px;
   border-radius: 6px;
   padding: 20px;
   margin: 20px 0 20px 0;
-  background-color: #f7f4f2;
+  background-color: white;
 }
 
 input {
@@ -151,7 +169,7 @@ button:focus {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: #00A3EF;
+  background-color: #00DB92;
   position: relative;
   top: 5px;
 }
@@ -198,11 +216,37 @@ button:focus {
   width: 70%;
 }
 
+#searchresults {
+  width: 400px;
+  position: relative;
+  top: -70px;
+  left: 17px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.15);
+  display: none;
+}
+
+#searchbar {
+  width: 400px;
+}
+
 @media screen and (max-width: 600px) {
   .center-contents {
     margin: 0 auto;
     min-width: 200px;
     width: 100%;
+  }
+
+  #searchbar {
+    width: 90%;
+  }
+
+  #searchresults {
+    width: 80%;
+    position: relative;
+    top: -70px;
+    left: 17px;
+    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.15);
+    display: none;
   }
 }
 .switch {
@@ -257,29 +301,5 @@ input:checked + .slider:before {
   -ms-transform: translateX(17.3333333333px);
   transform: translateX(17.3333333333px);
 }
-
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-
-.clearfix {
-  display: inline-block;
-}
-
-/* start commented backslash hack \*/
-* html .clearfix {
-  height: 1%;
-}
-
-.clearfix {
-  display: block;
-}
-
-/* close commented backslash hack */
 
 /*# sourceMappingURL=style.css.map */

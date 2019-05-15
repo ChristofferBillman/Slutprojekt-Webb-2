@@ -1,20 +1,20 @@
 extends layout
 
-mixin profile-module(src, name, online,id)
+mixin profile-module(user)
 
-    .standard-padding#ollekaiser()
+    .standard-padding
         .dsp-flex.profile-container#profile
             .profile-picture
-                img(src=src height="40")
+                img(src= user.src height="40")
             div
-                p= name
+                p= user.displayname
                 .dsp-flex
-                    if online
+                    if user.online
                         .circle-sm.green
                     else
                         .circle-sm.gray
                     .small-separator
-                    if online
+                    if user.online
                         p Aktiv
                     else
                         p Inaktiv
@@ -48,13 +48,21 @@ block content
     .center-contents
         h1 Chattar
         .card
-            p.section SENASTE
-                +profile-module("./assets/pop.jpg","Christoffer Billman", true, "idk")
-                +profile-module("./assets/olle.jpg","Olle Kaiser", "ollekaiser")
-        .card
-            p.section SKAPA
-                input(placeholder="Sök vänner ...")
-                +profile-module("./assets/olle.jpg", "Olle Kaiser")
+            if users != ""
+                p.section VÄNNER
+                each user in users
+                    +profile-module(user)
+                input#searchbar(placeholder="Sök användare...")
+            else
+                p.section HITTA VÄNNER
+                h2.gray Vi ser att du är ny här, välkommen! 
+                p.gray Börja genom att skaffa några vänner i sökfältet nedan.
+                input#searchbar(placeholder="Sök användare...")
+        .card#searchresults
+            p.gray Skriv för att söka
+                    
+
+                    
 
     script(src="/javascripts/home.js")
     script(src="/javascripts/darkmode.js")

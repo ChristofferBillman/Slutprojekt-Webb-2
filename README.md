@@ -98,9 +98,19 @@ Idag har jag i stort sett bara jobbat med att få till css för själva chattfö
 
 ### Pass #8:
 Idag har jag börjat med chattfunktionen. Jag tänkte generera alla öppna chatter sen tidigare sessioner via pug, men har bestämt mig för att till en början är det enklare att bara inte spara sessionsdata och sedan bara öppna chatterna genom klienten.
+180 min
 
 ### Pass #9:
 Idag så har jag försökt att göra så att användaren kan öppna och stänga chattar. Jag har aldrig manipulerat dom-trädet genom klienten efter sidan har laddats, så det är lite av en utmaning. Nästa tillfälle ska jag fortsätta med det.
+180min
+
+### Pass #10:
+Idag har jag försökt att fixa så att pug laddar in alla ens vänner på hemsidan, så att man kan öppna en chatt. Jag har väldigt mycket problem med callbacks och har försökt att fixa allt med databas etc.
+Tid: 180 min
+
+uppdatering: callbacksen fungerar som de ska nu. Nu laddas 10 av dina vänner in i sidan. Har också lagt till sökfunktionen, så nu kan man söka efter användare. Nästa pass så är tanken att man ska kunna lägga till vänner.
+
+Tid: circa 180 min
 
 
 

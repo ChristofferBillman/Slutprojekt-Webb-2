@@ -45,7 +45,9 @@ io.on('connection', socket => {
   // Recive and process new user data
   socket.on('newUser', newUser => {
     // Inserts user data into db.
-    functions.dbEmptyQuery(sqlstring.format("INSERT INTO users(username, password) VALUES(?,?)", [newUser.username,md5(newUser.password)]))
+    functions.dbQuery(sqlstring.format("INSERT INTO users(username, password, displayname) VALUES(?,?,?)", [newUser.username,md5(newUser.password), newUser.displayname]), (results) => {
+      console.log(results)
+    })
   })
 
   // Login
@@ -60,6 +62,15 @@ io.on('connection', socket => {
         socket.emit('err', "Felaktigt lösenord eller användarnamn.")
         console.log('[USER ACTIVITY]' + ": " + "User attempted login.")
       } 
+    })
+  })
+
+  // Searchbar
+  socket.on('onsearch', searchquery => {
+    var users = []
+    functions.dbQuery("SELECT * FROM users WHERE username LIKE '" + searchquery + "%';", (results) => {
+      users = results
+      socket.emit('onsearch', users)
     })
   })
 

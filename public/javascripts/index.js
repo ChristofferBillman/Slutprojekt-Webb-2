@@ -6,6 +6,7 @@ document.getElementById("registerbtn").addEventListener("click", e => {
     
     var newUser = {
       username: document.getElementById("newUsername").value,
+      displayname: document.getElementById("newDisplayname").value,
       password: document.getElementById("newPassword").value
     }
     socket.emit('token', newUser)

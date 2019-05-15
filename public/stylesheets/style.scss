@@ -9,7 +9,7 @@ $colors: (
 body {
     margin: 0 auto;
     padding: 16px;
-    background-color: map-get($colors, white)
+    background-color: #f4f6f7;
 }
 
 // Text formatting
@@ -37,6 +37,13 @@ h2 {
     color: grey;
     font-family: Secular One;
 }
+.gray {
+    color: gray;
+}
+.clickable-text {
+    color: map-get($colors, blue);
+    cursor: pointer;
+}
 
 // Layout
 
@@ -52,6 +59,7 @@ h2 {
 }
 .spacer {
     height: 16px;
+    width: 10px;
 }
 .nomargin {
     margin: 0;
@@ -60,9 +68,6 @@ h2 {
     background-color: lightgrey;
     height: 1px;
     margin: 10px;
-}
-#loginglyph {
-    padding: 11px 0 11px 0;
 }
 
 // Navigation
@@ -87,6 +92,16 @@ h2 {
           color: map-get($colors, grey);
         }
     }
+    .navcontainer {
+        height:70px;
+        display:inline-block;
+        margin: 0 0 0 30px;
+    }
+    #canvas {
+        float: left;
+        width: 70px;
+        height: 70px;
+    }
 
 // Card
 
@@ -97,7 +112,7 @@ h2 {
     padding: 20px;
     margin: 20px 0 20px 0;
     //background-color: map-get($colors, white);
-    background-color: #f7f4f2;
+    background-color: white;
 }
 
 // Input
@@ -158,7 +173,7 @@ button:focus {
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: map-get($colors, blue);
+    background-color: #00DB92;
     position: relative;
     top: 5px;
 }
@@ -207,12 +222,34 @@ button:focus {
     min-width: 200px;
     width: 70%;
 }
+#searchresults {
+    width: 400px;
+    position: relative;
+    top: -70px;
+    left: 17px;
+    box-shadow: 0 2px 30px 0 rgba(0,0,0,0.15);
+    display: none;
+}
+#searchbar {
+    width: 400px;
+}
 
 @media screen and (max-width: 600px) {
     .center-contents {
         margin: 0 auto;
         min-width: 200px;
         width: 100%;
+    }
+    #searchbar {
+        width: 90%;
+    }
+    #searchresults {
+        width: 80%;
+        position: relative;
+        top: -70px;
+        left: 17px;
+        box-shadow: 0 2px 30px 0 rgba(0,0,0,0.15);
+        display: none;
     }
   }
 
@@ -263,18 +300,3 @@ input:checked + .slider:before {
     -ms-transform: translateX(26px * (2/3));
     transform: translateX(26px * (2/3));
 }
-
-// Clearfix
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-    }
-.clearfix { display: inline-block; }
-/* start commented backslash hack \*/
-* html .clearfix { height: 1%; }
-.clearfix { display: block; }
-/* close commented backslash hack */
