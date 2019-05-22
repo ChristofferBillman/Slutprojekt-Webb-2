@@ -37,7 +37,7 @@ module.exports = function(app, connection) {
             }
         })
     })
-,
+
     // Settings route
     app.get('/settings', (req, res) => {
         functions.checkToken(req.cookies.token, success => {

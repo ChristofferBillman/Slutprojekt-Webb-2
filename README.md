@@ -1,7 +1,10 @@
 # Slutprojekt-Webb-2
 
+![](./mockups/readme.png)
+
 ## __Bakgrund__
 Sidan ska vara ett typ av socialt media, primärt en chattapp där man kan skriva med alla som har den. För att genomföra detta krävs det att man skapar ett konto och inloggningssystem samt vänsystem. Målgruppen för sidan är i stort sett alla.
+
 
 ## __Planering__
 Jag tänker att det till en början kommer finnas två sidor. En loginsida, som sedan redirectar en till huvudsidan där alla användarens chattar finns. Om det finns tid över kan jag försöka utveckla ett mer omfattande socialt nätverk, där man kan skapa inlägg, ladda upp filer etc. Det som krävs för att skapa chattappen är en väldigt bra grund att bygga vidare på.
