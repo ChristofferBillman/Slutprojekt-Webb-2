@@ -90,6 +90,14 @@ io.on('connection', socket => {
 
     })
   })
+  socket.on('friendrequest', data => {
+    console.log(data)
+    var username = data.sender.substr(0, data.sender.lastIndexOf("_"))
+    console.log()
+    functions.dbQuery("UPDATE users SET friends = CONCAT(friends,'(" + data.recipient + ");", (results) => {
+      console.log("inserted")
+    })
+  })
   /*
   if (update) socket.emit('newMsg', msg)
   else 

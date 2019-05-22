@@ -1,16 +1,15 @@
-
 var ip = "localhost:4000"
 var socket = io.connect(ip)
-
-var chatsopen = 0;
-
+var token = getCookie('token')
+console.log(token)
 socket.on('newMsg', msg => {
     
 })
+
 socket.on('onsearch', users => {
     console.log("searching...")
     if (users.length < 1) {
-        document.getElementById("searchresults").innerHTML += `<p class="gray"> Inga resultat.</p>`
+        document.getElementById("searchresults").innerHTML += `<p class="gray"> Inga resultat. </p>`
     } else {
         for(var i = 0; i < 10; i++) {
             document.getElementById("searchresults").innerHTML +=
@@ -25,7 +24,7 @@ socket.on('onsearch', users => {
                     <p> ${users[i].username} </p> <div class="spacer"></div> <p class="gray"> ${users[i].displayname} </p>
                 </div>
                     <div class="dsp-flex">
-                        <p class="clickable-text" id="${users[i].username}friendrequest"> Skicka vänförfrågan </p>
+                        <button class="clickable-text friendrequest" id="${users[i].id}_friendrequest" onclick="friendrequest(this)"> Skicka vänförfrågan </button>
                     </div>
                 </div>
             </div>
@@ -34,6 +33,15 @@ socket.on('onsearch', users => {
         }
     }  
 })
+function friendrequest(el) {
+    var recipient = el.id.substr(0, el.id.lastIndexOf("_"))
+    socket.emit('friendrequest', {recipient: recipient, sender: token})
+}
+/*document.getElementsByClassName("friendrequest").addEventListener("click", e => {
+    if (users[i] == document.getElementById)
+})*/
+
+
 searchbar = document.getElementById("searchbar")
 
 searchbar.addEventListener("keydown", e => {
@@ -43,9 +51,6 @@ searchbar.addEventListener("keydown", e => {
         searchquery = searchbar.value
         socket.emit('onsearch', searchquery)
     }
-})
-document.getElementById("searchbar").addEventListener("blur", e => {
-    document.getElementById("searchresults").style.display = "none"
 })
 document.getElementById("searchbar").addEventListener("focus", e => {
     document.getElementById("searchresults").style.display = "inline-block"
