@@ -1,7 +1,5 @@
 # Slutprojekt-Webb-2
 
-![](./mockups/readme.png)
-
 ## __Bakgrund__
 Sidan ska vara ett typ av socialt media, primärt en chattapp där man kan skriva med alla som har den. För att genomföra detta krävs det att man skapar ett konto och inloggningssystem samt vänsystem. Målgruppen för sidan är i stort sett alla.
 
@@ -16,7 +14,13 @@ I det här projektet tas följande områden med:
 * Databashantering
 * Node express
 * PUG
+* SASS
 * Sockets
+
+Almänna dataskyddslagen gäller inte i det här projektet, eftersom att inga personuppgifter sparas. Undantag kan ses till namn, men hemsidan tillfrågar inte för och efternamn, utan bara förnamn eller annat namn, vilket inte räcker för att det ska anses personuppgifter. Om hemsidan skulle behandla personuppgifter så gäller lagen. Detta därför att jag tolkar en hemsida som drivs av enskild person, som behandlar personuppgifter som en sociokulturell verksamhet. På europeiska kommissionen står det följande: 
+
+"Om en enskild person använder personuppgifter utanför den personliga sfären, till exempel för sociokulturell eller ekonomisk verksamhet, måste dataskyddslagstiftningen respekteras." - https://ec.europa.eu/info/law/law-topic/data-protection/reform/what-does-general-data-protection-regulation-gdpr-govern_sv
+
 
 ### Tidplan:
 | pass | att göra |
@@ -85,7 +89,6 @@ Nästa pass har jag tänkt att börja arbete på själva chattfunktionen samt at
 Tid: 180 min.
 
 ### Pass #6:
-Idag har jag jobbat med ...
 Tid: 
 Börjat: 10:24
 Slutat: 11:20
@@ -105,6 +108,8 @@ Idag har jag börjat med chattfunktionen. Jag tänkte generera alla öppna chatt
 
 ### Pass #9:
 Idag så har jag försökt att göra så att användaren kan öppna och stänga chattar. Jag har aldrig manipulerat dom-trädet genom klienten efter sidan har laddats, så det är lite av en utmaning. Nästa tillfälle ska jag fortsätta med det.
+
+Färgschemats som ska användas har också ändrats. Det nya färgschemat kan ses i mockupsen.
 180min
 
 ### Pass #10:

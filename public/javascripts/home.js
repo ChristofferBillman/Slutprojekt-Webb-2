@@ -2,10 +2,13 @@ var ip = "localhost:4000"
 var socket = io.connect(ip)
 var token = getCookie('token')
 console.log(token)
+
+//Recive message.
 socket.on('newMsg', msg => {
     
 })
 
+// Search
 socket.on('onsearch', users => {
     console.log("searching...")
     if (users.length < 1) {
@@ -54,6 +57,9 @@ searchbar.addEventListener("keydown", e => {
 })
 document.getElementById("searchbar").addEventListener("focus", e => {
     document.getElementById("searchresults").style.display = "inline-block"
+})
+document.getElementById("searchbar").addEventListener("blur", e => {
+    document.getElementById("searchresults").style.display = "none"
 })
 /*
 document.getElementById("send1").addEventListener("click", e => {

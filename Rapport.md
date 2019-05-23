@@ -18,6 +18,8 @@ Min tanke var väl någon stans att använda socket.io för att ladda in saker p
 
 Ännu något som kunde gått bättre var css/html. Jag borde ha fokuserat mer på att få hemsidan att fungera än att få den se bra ut. Jag valde att designa hemsidan först. Dessutom så valde jag på digitalt skapande att designa hemsidan, och då hade jag redan gjort en design på webbutvecklingen. Det jag menar är att jag slösade onödig tid i början på design.
 
+Jag har testat min webbplats med wave, ett verktyg för att se om ens hemsida är tillgänglig. Det enda wave hade att påpeka angående tillgängligheten är att det inte finns en tillhörande label till varje input-fält samt att en del element (blåa knappar med vit text) har dålig kontrast. Jag håller allt om allt som wave påpekar, kontrasten kan förbättras och det är viktigt att det är tydligt vad som ska skrivas var i inputs. Jag vill behålla färgen som används, och tänker istället att jag gör det genom att göra texten fetstil istället så den blir tydligare. Angående labels så tycker jag att det är onödigt att ha både en label och placeholder. Tanken var att placeholdern ska agera som label medan fältet är inaktivt, och sedan när användaren klickar på fältet så åker placeholdertexten upp och ur vägen när användaren skriver. Det är samma typ av input som material.io använder.
+
 ### Sammanfattning
 Det finns mycket utrymme för fortsatt utveckling på projektet. Däremot så har jag lärt mig en del grejer, och inser nu att jag borde planerat hur jag skulle gjort allt på ett annat sätt.
 

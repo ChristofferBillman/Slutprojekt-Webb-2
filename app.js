@@ -25,7 +25,7 @@ var connection = mysql.createConnection(secrets.dbcredentials)
 // Connect to db
 connection.connect((err)=> {
   if (err) /*throw err*/ console.log('[STATUS]'.black.bgWhite + ': ' + 'Database connect failed.'.red)
-  console.log('[STATUS]'.black.bgWhite + ': ' + 'Database connected.'.green)
+  else console.log('[STATUS]'.black.bgWhite + ': ' + 'Database connected.'.green)
 })
 
 require('./routes')(app, connection)
